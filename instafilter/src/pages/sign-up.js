@@ -58,3 +58,7 @@ export default function SignUp() {
           setError('That username is already taken, please try another.');
         }
       };
+
+      useEffect(() => {
+        document.title = 'Sign Up - Instagram';
+      }, []);
