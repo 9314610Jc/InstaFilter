@@ -4,6 +4,10 @@ import 'firebase/auth';
 
 // import intital seed file
 
+import {seedDatabase} from '../seed';
+
+// set up config
+
 const config = {
     apiKey: "AIzaSyC24ut1eS0xHiCbG7cUQ3xxjQMOsPErJ0s",
     authDomain: "insta-filter-187fd.firebaseapp.com",
@@ -19,6 +23,12 @@ const firebase = Firebase.initializeApp(config);
 //
 
 const { FieldValue } = Firebase.firestore;
+
+// verify that it's working
+console.log('firebase', firebase);
+
+// seed database - DEV ONLY
+// seedDatabase(firebase);
 
 // export data
 
