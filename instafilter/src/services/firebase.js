@@ -134,7 +134,7 @@ export async function getUserByUserId(userId) {
     const result = await firebase
       .firestore()
       .collection('users')
-      .where('username', '==', loggedInUserUsername) // karl (active logged in user)
+      .where('username', '==', loggedInUserUsername) // user1 (active logged in user)
       .where('following', 'array-contains', profileUserId)
       .get();
   
@@ -146,3 +146,20 @@ export async function getUserByUserId(userId) {
     return response.userId;
   }
   
+  export async function toggleFollow(
+    isFollowingProfile,
+    activeUserDocId,
+    profileDocId,
+    profileUserId,
+    followingUserId
+  ) {
+    // 1st param: user 1's doc id
+    // 2nd param: user 2's user id
+    // 3rd param: is the user following this profile? e.g. does user1 follow user2? (true/false)
+    await updateLoggedInUserFollowing(activeUserDocId, profileUserId, isFollowingProfile);
+  
+    // 1st param: user1's user id
+    // 2nd param: user2's doc id
+    // 3rd param: is the user following this profile? e.g. does user1 follow user2? (true/false)
+    await updateFollowedUserFollowers(profileDocId, followingUserId, isFollowingProfile);
+  }
