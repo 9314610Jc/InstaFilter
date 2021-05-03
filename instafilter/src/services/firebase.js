@@ -107,11 +107,25 @@ export async function getUserByUserId(userId) {
         }
         // photo.userId = 2
         const user = await getUserByUserId(photo.userId);
-        // raphael
+      
         const { username } = user[0];
         return { username, ...photo, userLikedPhoto };
       })
     );
   
     return photosWithUserDetails;
+  }
+
+  export async function getUserPhotosByUserId(userId) {
+    const result = await firebase
+      .firestore()
+      .collection('photos')
+      .where('userId', '==', userId)
+      .get();
+  
+    const photos = result.docs.map((photo) => ({
+      ...photo.data(),
+      docId: photo.id
+    }));
+    return photos;
   }
