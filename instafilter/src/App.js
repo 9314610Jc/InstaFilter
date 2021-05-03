@@ -1,6 +1,11 @@
-import logo from "./logo.svg";
-import "./App.css";
+import { lazy, Suspense } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import ReactLoader from './components/loader';
 import * as ROUTES from './constants/routes';
+import UserContext from './context/user';
+import useAuthListener from './hooks/use-auth-listener';
+
+import ProtectedRoute from './helpers/protected-route';
 
 function App() {
   return (
