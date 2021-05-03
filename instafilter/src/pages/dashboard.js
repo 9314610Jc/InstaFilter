@@ -24,3 +24,7 @@ export default function Dashboard({ user: loggedInUser }) {
     </LoggedInUserContext.Provider>
   );
 }
+
+Dashboard.propTypes = {
+  user: PropTypes.object.isRequired
+};
