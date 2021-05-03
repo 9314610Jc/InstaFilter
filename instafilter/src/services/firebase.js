@@ -9,3 +9,15 @@ export async function getUserByUserId(userId) {
   
     return user;
   }
+  export async function getUserByUsername(username) {
+    const result = await firebase
+      .firestore()
+      .collection('users')
+      .where('username', '==', username)
+      .get();
+  
+    return result.docs.map((item) => ({
+      ...item.data(),
+      docId: item.id
+    }));
+  }
