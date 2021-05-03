@@ -7,6 +7,12 @@ import useAuthListener from './hooks/use-auth-listener';
 
 import ProtectedRoute from './helpers/protected-route';
 
+const Login = lazy(() => import('./pages/login'));
+const SignUp = lazy(() => import('./pages/sign-up'));
+const Dashboard = lazy(() => import('./pages/dashboard'));
+const Profile = lazy(() => import('./pages/profile'));
+const NotFound = lazy(() => import('./pages/not-found'));
+
 function App() {
   return (
     <div className="App">
