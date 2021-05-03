@@ -57,4 +57,9 @@ export default function AddComment({ docId, comments, setComments, commentInput 
       </div>
     );
   }
-  
+  AddComment.propTypes = {
+    docId: PropTypes.string.isRequired,
+    comments: PropTypes.array.isRequired,
+    setComments: PropTypes.func.isRequired,
+    commentInput: PropTypes.object
+  };
