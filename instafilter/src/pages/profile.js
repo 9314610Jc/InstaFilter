@@ -9,3 +9,13 @@ export default function Profile() {
   const { username } = useParams();
   const [user, setUser] = useState(null);
   const history = useHistory();
+
+  useEffect(() => {
+    async function checkUserExists() {
+      const [user] = await getUserByUsername(username);
+      if (user?.userId) {
+        setUser(user);
+      } else {
+        history.push(ROUTES.NOT_FOUND);
+      }
+    }
