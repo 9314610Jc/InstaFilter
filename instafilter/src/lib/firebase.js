@@ -4,7 +4,7 @@ import 'firebase/auth';
 
 // import intital seed file
 
-import {seedDatabase} from '../seed';
+// import {seedDatabase} from '../seed';
 
 // set up config
 
