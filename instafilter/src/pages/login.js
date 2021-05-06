@@ -1,37 +1,37 @@
 import { useState, useContext, useEffect } from 'react';
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from 'react-router-dom';
 import FirebaseContext from '../context/firebase';
 import * as ROUTES from '../constants/routes';
 
 export default function Login() {
-    const history = useHistory();
-    const { firebase } = useContext(FirebaseContext);
+  const history = useHistory();
+  const { firebase } = useContext(FirebaseContext);
 
-    const [emailAddress, setEmailAddress] = useState('');
-    const [password, setPassword] = useState('');
+  const [emailAddress, setEmailAddress] = useState('');
+  const [password, setPassword] = useState('');
 
-    const [error, setError] = useState('');
-    const isInvalid = password === '' || emailAddress === '';
+  const [error, setError] = useState('');
+  const isInvalid = password === '' || emailAddress === '';
 
-    const handleLogin = async (event) => {
-        event.preventDefault();
+  const handleLogin = async (event) => {
+    event.preventDefault();
 
-        try{
-            await firebase.auth().signInWithEmailAndPassword(emailAddress, password);
-            history.push(ROUTES.DASHBOARD)
-        }catch (error){
-            setEmailAddress('');
-            setPassword('');
-            setError(error.message);
-        }
-    };
-    
+    try {
+      await firebase.auth().signInWithEmailAndPassword(emailAddress, password);
+      history.push(ROUTES.DASHBOARD)
+    } catch (error) {
+      setEmailAddress('');
+      setPassword('');
+      setError(error.message);
+    }
+  };
 
-    useEffect(() => {
-        document.title = 'Login - InstaFilter';
-    }, []);
 
-    return (
+  useEffect(() => {
+    document.title = 'Login - InstaFilter';
+  }, []);
+
+  return (
     <div className="container flex mx-auto max-w-screen-md items-center h-screen">
       <div className="flex w-3/5">
         <img src="/images/iphone-with-profile.jpg" alt="iPhone with Instagram app" />
@@ -74,7 +74,9 @@ export default function Login() {
         <div className="flex justify-center items-center flex-col w-full bg-white p-4 rounded border border-gray-primary">
           <p className="text-sm">
             Don't have an account?{` `}
-
+            <Link to={ROUTES.SIGN_UP} className="font-bold text-blue-medium">
+              Sign up
+            </Link>
           </p>
         </div>
       </div>
