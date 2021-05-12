@@ -6,6 +6,7 @@ import Sidebar from '../components/sidebar';
 import useUser from '../hooks/use-user';
 import LoggedInUserContext from '../context/logged-in-user';
 import SidebarFilters from '../components/SidebarFilters';
+import SideNav from '../components/SideNav';
 
 export default function Dashboard({ user: loggedInUser }) {
   const { user, setActiveUser } = useUser(loggedInUser.uid);
@@ -18,7 +19,8 @@ export default function Dashboard({ user: loggedInUser }) {
       <div className="bg-gray-background">
         <Header />
         <div className="grid grid-cols-3 gap-4 justify-between mx-auto max-w-screen-lg">
-          <SidebarFilters />
+          <SideNav />
+          {/* <SidebarFilters /> */}
           <Timeline />
           <Sidebar />
         </div>
